@@ -1,0 +1,12 @@
+<h1> List of all games </h1>
+<div class="list-group">
+    <%= for e<- @events do %>
+        <a href="events/<%=e.game_id %>">
+            <ul class="list-group">
+                <li class="list-group-item"><%=e.game_id%></li>
+                <li class="list-group-item"><%=e.game_id%></li>
+                <li class="list-group-item"><%=e.game_id%></li>
+            </ul>
+        </a>
+    <%= end%>
+</div>

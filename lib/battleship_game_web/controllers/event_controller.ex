@@ -8,7 +8,7 @@ defmodule BattleshipGameWeb.EventController do
   end
 
   def list(conn, _params) do
-    event = BattleshipServer.Repo.get_all
+    events = BattleshipServer.Repo.get_all
     render conn, "list.html", events: events
   end
 end
