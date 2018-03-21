@@ -1,12 +1,14 @@
 defmodule BattleshipGameWeb.EventController do
   use BattleshipGameWeb, :controller
 
-  def show(conn, %{"id" => id}) do
-    # text conn, "events"
+  def show(conn, %{"id"=> id}) do
     event =
-      BattleshipGameWeb.EventQueries.get_by_id(id)
-    |> IO.inspect
+      BattleshipServer.Repo.get_by(Battleshipserver.Db.Game, game_id: id)
+    render conn, "details.html", event: event
+  end
 
-    render conn, "details.html", events: event
+  def list(conn, _params) do
+    event = BattleshipServer.Repo.get_all
+    render conn, "list.html", events: events
   end
 end

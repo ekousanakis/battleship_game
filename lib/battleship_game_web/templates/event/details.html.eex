@@ -1,0 +1,3 @@
+<h1><%= @event.game_id %></h1>
+<h1><%= @event.player1_username %></h1>
+<h1><%= format_date(@event.start_date) %></h1>
