@@ -1,12 +1,42 @@
 <h1> List of all games </h1>
 <div class="list-group">
-    <%= for e<- @events do %>
-        <a href="events/<%=e.game_id %>">
-            <ul class="list-group">
-                <li class="list-group-item"><%=e.game_id%></li>
-                <li class="list-group-item"><%=e.game_id%></li>
-                <li class="list-group-item"><%=e.game_id%></li>
-            </ul>
-        </a>
-    <%= end%>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col">game_id</th>
+                <th scope="col">player1_username</th>
+                <th scope="col">player2_username</th>
+                <th scope="col">winner</th>
+                <th scope="col">start_date</th>
+                <th scope="col">end_date</th>
+            </tr>
+        </thead>
+        <%= for e<- @events do %>
+                <tbody>
+                    <tr onclick="location.href='<%=e.game_id %>'" style="cursor:pointer;">
+                        <!-- <th scope="row"></th> -->
+                        <td>
+                            <%=e.game_id%>
+                        </td>
+                        <td>
+                            <%=e.player1_username%>
+                        </td>
+                        <td>
+                            <%=e.player2_username%>
+                        </td>
+                        <td>
+                            <%=e.winner%>
+                        </td>
+                        <td>
+                            <%=format_date(e.start_date)%>
+                        </td>
+                        <td>
+                            <%=format_date(e.end_date)%>
+                        </td>
+                    </tr>
+                </tbody>
+            <%= end%>
+    </table>
+
 </div>

@@ -9,6 +9,11 @@ defmodule BattleshipGameWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  # pipeline :authorized do
+  #   plug :browser
+  #   plug BattleshipGameWeb.AuthorizedPlug
+  # end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -17,8 +22,17 @@ defmodule BattleshipGameWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/events", EventController, :list
-    get "/events/:id", EventController, :show
+    get "/login", LoginController, :index
+    post "/login", LoginController, :login
+  end
+
+  scope "/events", BattleshipGameWeb do
+    pipe_through :browser # Use the default browser stack
+    get "/", EventController, :list
+    get "/new", EventController, :create
+    post "/new", EventController, :add
+    get "/:game_id", EventController, :show
+
   end
 
   # Other scopes may use custom stacks.
