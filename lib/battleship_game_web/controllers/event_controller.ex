@@ -24,9 +24,16 @@ defmodule BattleshipGameWeb.EventController do
 
     Battleshipserver.Db.Game.changeset(%Battleshipserver.Db.Game{}, game)
     |>BattleshipServer.Repo.insert!
-
-
     redirect conn, to: event_path(conn, :list)
+  end
+
+  def play(conn, %{"game_id"=> game_id, "winner"=> winner}) do
+
+    g = BattleshipServer.Repo.get_by(Battleshipserver.Db.Game, game_id: game_id)
+    |> Ecto.Changeset.change(end_date: DateTime.utc_now(), winner: winner )
+    |> BattleshipServer.Repo.update
+
+    redirect conn, to: event_path(conn, :show, game_id)
   end
 
 

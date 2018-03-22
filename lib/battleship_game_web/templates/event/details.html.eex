@@ -2,3 +2,12 @@
 <h1><%= @event.player1_username %></h1>
 <h1><%= format_date(@event.start_date) %></h1>
 
+<%= form_for @conn, event_path(@conn, :play, @event.game_id), [as: :reservation, class: "form-inline"], fn f-> %>
+    <div class="form-group">
+        <%= label f, :winner, "Winner" %>
+        <%= number_input f, :winner, class: "form-control" %>
+    </div>
+
+    <%= submit "send", class: "btn btn-primary pull-right" %>
+<% end %>
+
