@@ -1,3 +1,7 @@
+<!-- tha stalei ston contoller dedomena apo to conn k oxi changset
+    tha stalei sto controller ena struct me key to :login 
+     kai mesa tha exei allo ena struct me key to username
+ -->
 <%= form_for @conn, login_path(@conn, :login), [as: :login], fn f -> %>
     <%= text_input f, :username %>
     <%= submit "Login" %>

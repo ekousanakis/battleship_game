@@ -1,4 +1,7 @@
 <h1> List of all games </h1>
+
+<a href="<%= event_path(@conn, :create) %>" class="btn btn-primary pull-right"> Add game </a>
+
 <div class="list-group">
     <table class="table">
         <thead class="thead-dark">
@@ -14,7 +17,7 @@
         </thead>
         <%= for e<- @events do %>
                 <tbody>
-                    <tr onclick="location.href='<%=e.game_id %>'" style="cursor:pointer;">
+                    <tr onclick="location.href='/events/<%=e.game_id %>'" style="cursor:pointer;">
                         <!-- <th scope="row"></th> -->
                         <td>
                             <%=e.game_id%>

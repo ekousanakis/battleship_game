@@ -1,6 +1,7 @@
 defmodule BattleshipGameWeb.EventController do
   use BattleshipGameWeb, :controller
 
+  # plug BattleshipGameWeb.AuthorizedPlug, "create" when action in [:create]
   plug BattleshipGameWeb.AuthorizedPlug when action in [:create]
 
   def show(conn, %{"game_id"=> game_id}) do
@@ -12,7 +13,7 @@ defmodule BattleshipGameWeb.EventController do
   def list(conn, _params) do
     events = BattleshipServer.Repo.all(Battleshipserver.Db.Game)
     render conn, "list.html", events: events
-  end
+end
 
   def create(conn, _params) do
     changeset = Battleshipserver.Db.Game.changeset(%Battleshipserver.Db.Game{}, %{})

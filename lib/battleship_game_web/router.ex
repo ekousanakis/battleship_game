@@ -25,12 +25,18 @@ defmodule BattleshipGameWeb.Router do
     get "/login", LoginController, :index
     post "/login", LoginController, :login
 
-    get "/events", EventController, :list
+    get "/events/", EventController, :list
     get "/events/new", EventController, :create
     post "/events/new", EventController, :add
     get "/events/:game_id", EventController, :show
     post "/events/:game_id/reserve", EventController, :play
+
   end
+
+  # scope "/", BattleshipGameWeb do
+  #   pipe_through :authorized # Use the default browser stack
+
+  # end
 
 
   # Other scopes may use custom stacks.
