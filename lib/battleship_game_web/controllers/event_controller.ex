@@ -2,7 +2,7 @@ defmodule BattleshipGameWeb.EventController do
   use BattleshipGameWeb, :controller
 
   # plug BattleshipGameWeb.AuthorizedPlug, "create" when action in [:create]
-  plug BattleshipGameWeb.AuthorizedPlug when action in [:create]
+  # plug BattleshipGameWeb.AuthorizedPlug when action in [:create]
 
   def show(conn, %{"game_id"=> game_id}) do
     event =
