@@ -28,11 +28,13 @@ end
     redirect conn, to: event_path(conn, :list)
   end
 
-  def play(conn, %{"game_id"=> game_id, "winner"=> winner}) do
+  def play(conn, %{"game_id" => game_id, "reservation" => %{"winner" => winner}}) do
 
-    g = BattleshipServer.Repo.get_by(Battleshipserver.Db.Game, game_id: game_id)
+    {:ok, event} = BattleshipServer.Repo.get_by(Battleshipserver.Db.Game, game_id: game_id)
     |> Ecto.Changeset.change(end_date: DateTime.utc_now(), winner: winner )
     |> BattleshipServer.Repo.update
+
+    BattleshipGameWeb.EventChannel.send_update(event)
 
     redirect conn, to: event_path(conn, :show, game_id)
   end

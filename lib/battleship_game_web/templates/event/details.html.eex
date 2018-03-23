@@ -1,6 +1,7 @@
 <h1><%= @event.game_id %></h1>
 <h1><%= @event.player1_username %></h1>
 <h1><%= format_date(@event.start_date) %></h1>
+<h1><%= @event.winner %></h1>
 
 <%= form_for @conn, event_path(@conn, :play, @event.game_id), [as: :reservation, class: "form-inline"], fn f-> %>
     <div class="form-group">
@@ -10,4 +11,8 @@
 
     <%= submit "send", class: "btn btn-primary pull-right" %>
 <% end %>
+
+
+
+<span id="id" data-id="<%= @event.game_id %>"> </span>
 
